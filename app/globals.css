@@ -1,0 +1,124 @@
+@import "tailwindcss";
+
+@theme inline {
+  --color-bg: #f2ede3;
+  --color-bg-soft: #e8e0d1;
+  --color-ink: #1a1714;
+  --color-ink-soft: #2a2520;
+  --color-muted: #6b6357;
+  --color-rule: #c9bfae;
+  --color-accent: #c75b3f;
+  --color-accent-2: #6ba8c0;
+  --color-accent-3: #d6b656;
+  --color-cream: #fffcf6;
+
+  --font-serif: "Fraunces", "Times New Roman", serif;
+  --font-sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --font-mono: "JetBrains Mono", ui-monospace, "SF Mono", monospace;
+
+  --radius-brand: 18px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--color-ink);
+  color: var(--color-bg);
+}
+
+/* ───── Hero title reveal ───── */
+.hero-line {
+  display: block;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: rise 0.9s cubic-bezier(0.2, 0.7, 0.2, 1) forwards;
+}
+.hero-line-1 { animation-delay: 0.05s; }
+.hero-line-2 { animation-delay: 0.15s; }
+.hero-line-3 { animation-delay: 0.25s; }
+.hero-line-4 { animation-delay: 0.35s; }
+
+@keyframes rise {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.hero-em {
+  font-style: italic;
+  position: relative;
+  display: inline-block;
+  background: linear-gradient(transparent 60%, var(--color-accent-3) 60% 90%, transparent 90%);
+  padding: 0 0.15em;
+}
+
+.hero-highlight {
+  position: relative;
+  display: inline-block;
+  color: var(--color-accent);
+}
+.hero-highlight::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -6px;
+  height: 10px;
+  background: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 10' fill='none' stroke='%23C75B3F' stroke-width='3' stroke-linecap='round'><path d='M2 6 Q 25 1, 50 5 T 100 5 T 150 5 T 198 5'/></svg>")
+    repeat-x;
+  background-size: 200px 10px;
+  animation: squiggle 4s linear infinite;
+}
+
+@keyframes squiggle {
+  from { background-position-x: 0; }
+  to { background-position-x: 200px; }
+}
+
+/* ───── Ticker marquee ───── */
+.ticker-track {
+  animation: ticker-scroll 38s linear infinite;
+}
+@keyframes ticker-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* ───── Scroll reveal ───── */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ───── Motion safety ───── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+  .hero-line {
+    opacity: 1;
+    transform: none;
+  }
+  .ticker-track {
+    animation: none !important;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
