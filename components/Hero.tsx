@@ -60,7 +60,7 @@ export default function Hero() {
         <span className="inline-block h-3 w-3 rounded-full bg-[#A6D4C0]" />
         <span className="inline-block h-3 w-3 rounded-full bg-accent-2" />
         <span className="inline-block h-3 w-3 rounded-full bg-ink" />
-        <span className="ml-2.5 font-mono text-xs tracking-[0.02em]">
+        <span className="ml-2.5 whitespace-nowrap font-mono text-xs tracking-[0.02em]">
           Open to opportunities · Available for hire
         </span>
       </div>
