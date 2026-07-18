@@ -20,10 +20,10 @@ export default function Closing() {
 
         <div className="flex flex-wrap gap-3">
           <a
-            href="mailto:devhuser@gmail.com"
+            href="mailto:contato.dev.hugosergio@gmail.com"
             className="inline-flex items-center gap-2 rounded-full bg-accent px-5 py-3.5 text-[clamp(14px,1.1vw,16px)] font-medium tracking-[0.01em] text-cream transition-all hover:-translate-y-0.5 hover:bg-accent-3 hover:text-ink sm:px-6 sm:py-4 motion-reduce:transition-none motion-reduce:hover:translate-y-0"
           >
-            devhuser@gmail.com
+            contato.dev.hugosergio@gmail.com
             <svg
               width="18"
               height="18"

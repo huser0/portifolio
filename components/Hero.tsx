@@ -109,7 +109,7 @@ export default function Hero() {
             </a>
             , or just{" "}
             <a
-              href="mailto:devhuser@gmail.com"
+              href="mailto:contato.dev.hugosergio@gmail.com"
               className="border-b border-current pb-px hover:text-accent"
             >
               send me an email
