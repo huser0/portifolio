@@ -132,7 +132,7 @@ export default function Projects() {
         {PROJECTS.map((p, i) => (
           <article
             key={`${p.title}-${i}`}
-            onClick={() => p.href && window.open(p.href, '_blank')}
+            onClick={() => p.href && (window.location.href = p.href)}
             className={`group flex flex-col overflow-hidden rounded-brand border border-rule bg-cream transition-all duration-300 ease-[cubic-bezier(.2,.7,.2,1)] hover:-translate-y-1.25 hover:shadow-[0_24px_50px_-22px_rgba(26,23,20,0.25)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none ${p.href ? 'cursor-pointer' : ''}`}
           >
             <div
