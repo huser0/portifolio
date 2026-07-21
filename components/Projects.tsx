@@ -68,8 +68,7 @@ const PROJECTS: Project[] = [
     desc: (
       <>
         Portal de guias de estudo interativos para certificações AWS e
-        tecnologias como Quarkus. Navegação por módulos, progresso e
-        sidebar com tópicos — tudo client-side com React e Vite.
+        tecnologias como Quarkus.
       </>
     ),
     stack: ["React", "TypeScript", "Vite"],
