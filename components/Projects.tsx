@@ -59,6 +59,22 @@ const PROJECTS: Project[] = [
     link: "Tracked →",
   },
   {
+    cover: "Web · Study tool",
+    gradient: "linear-gradient(135deg, #FF9900 0%, #232F3E 100%)",
+    year: "2026",
+    status: "Open source",
+    title: "Study Guides Hub",
+    desc: (
+      <>
+        Portal de guias de estudo interativos para certificações AWS e
+        tecnologias como Quarkus. Navegação por módulos, progresso e
+        sidebar com tópicos — tudo client-side com React e Vite.
+      </>
+    ),
+    stack: ["React", "TypeScript", "Vite"],
+    link: "hugosergio.com.br/guide/",
+  },
+  {
     cover: "Notes · Writing",
     gradient: "linear-gradient(135deg, #2A2520 0%, #6BA8C0 100%)",
     year: "TBD",
