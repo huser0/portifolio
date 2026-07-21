@@ -9,6 +9,7 @@ type Project = {
   desc: React.ReactNode;
   stack: string[];
   link: string;
+  href?: string;
 };
 
 const PROJECTS: Project[] = [
@@ -72,7 +73,8 @@ const PROJECTS: Project[] = [
       </>
     ),
     stack: ["React", "TypeScript", "Vite"],
-    link: "hugosergio.com.br/guide/",
+    link: "Acessar →",
+    href: "https://hugosergio.com.br/guide/",
   },
   {
     cover: "Notes · Writing",
@@ -130,7 +132,8 @@ export default function Projects() {
         {PROJECTS.map((p, i) => (
           <article
             key={`${p.title}-${i}`}
-            className="group flex flex-col overflow-hidden rounded-brand border border-rule bg-cream transition-all duration-300 ease-[cubic-bezier(.2,.7,.2,1)] hover:-translate-y-1.25 hover:shadow-[0_24px_50px_-22px_rgba(26,23,20,0.25)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none"
+            onClick={() => p.href && window.open(p.href, '_blank')}
+            className={`group flex flex-col overflow-hidden rounded-brand border border-rule bg-cream transition-all duration-300 ease-[cubic-bezier(.2,.7,.2,1)] hover:-translate-y-1.25 hover:shadow-[0_24px_50px_-22px_rgba(26,23,20,0.25)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none ${p.href ? 'cursor-pointer' : ''}`}
           >
             <div
               className="relative flex h-[clamp(140px,18vw,220px)] items-end overflow-hidden p-4.5 after:absolute after:inset-0 after:bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_60%)]"
@@ -165,13 +168,12 @@ export default function Projects() {
               </ul>
               <div className="mt-auto flex items-center justify-between gap-4.5 text-[13px] font-medium">
                 <span
-                  aria-disabled="true"
-                  className="inline-flex items-center gap-1 border-b border-transparent pb-px text-muted"
+                  className={`inline-flex items-center gap-1 border-b pb-px ${p.href ? 'border-current text-ink hover:text-accent' : 'border-transparent text-muted'}`}
                 >
                   {p.link}
                 </span>
                 <span className="font-mono text-[10px] tracking-[0.12em] text-muted uppercase">
-                  Placeholder
+                  {p.href ? 'Live' : 'Placeholder'}
                 </span>
               </div>
             </div>
