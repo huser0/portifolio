@@ -5,102 +5,99 @@ type Project = {
   cover: string;
   gradient: string;
   year: string;
-  status: "Coming soon" | "In progress" | "Open source";
   title: string;
-  desc: React.ReactNode;
+  desc: string;
   stack: string[];
-  link: string;
-  href?: string;
+  repository: string;
+  website?: string;
 };
 
+// Descriptions and technologies checked against public GitHub docs and source code.
+// Years reflect repository creation; website URLs come from repository metadata.
 const PROJECTS: Project[] = [
   {
-    cover: "Web · Side project",
+    cover: "Messaging · Integration",
+    gradient: "linear-gradient(135deg, #1F1B16 0%, #6BA8C0 100%)",
+    year: "2026",
+    title: "Kafka Demo",
+    desc: "Demonstração de mensageria com duas aplicações Spring Boot: uma publica mensagens recebidas por HTTP e outra as consome pelo Apache Kafka. A infraestrutura de Kafka e ZooKeeper roda com Docker Compose.",
+    stack: ["Java", "Spring Boot", "Apache Kafka", "Docker Compose"],
+    repository: "https://github.com/huser0/kafka-demo",
+  },
+  {
+    cover: "CRM · Automation",
+    gradient: "linear-gradient(135deg, #6BA8C0 0%, #2A2520 100%)",
+    year: "2026",
+    title: "Salesforce Picklist Automation",
+    desc: "Automação em Python para habilitar valores de picklists em Record Types do Salesforce a partir de uma matriz Excel. Inclui simulação, aplicação via Salesforce CLI e planilha de retorno com os resultados.",
+    stack: ["Python", "Salesforce CLI", "openpyxl", "Excel"],
+    repository: "https://github.com/huser0/salesforce_automation_picklist",
+  },
+  {
+    cover: "Web & Mobile · Finance",
+    gradient: "linear-gradient(135deg, #4C7A5A 0%, #B8863A 100%)",
+    year: "2026",
+    title: "Controle de Notas",
+    desc: "Aplicativo web e mobile para organizar cupons fiscais, acompanhar gastos e consultar o histórico de preços. Inclui leitura de notas por OCR, gráficos de análise e exportação para Excel.",
+    stack: ["React", "React Native", "Expo", "Tesseract.js"],
+    repository: "https://github.com/huser0/controle-notas",
+    website: "https://controle-notas-nine.vercel.app",
+  },
+  {
+    cover: "Data · Visualization",
     gradient: "linear-gradient(135deg, #1F1B16 0%, #C75B3F 100%)",
     year: "2026",
-    status: "Coming soon",
-    title: "Personal Project — Placeholder",
-    desc: (
-      <>
-        A small, opinionated side project I&apos;m building to scratch my own
-        itch. More details once it stops being embarrassing — for now, this
-        card holds the spot.
-      </>
-    ),
-    stack: ["TypeScript", "React", "Next.js"],
-    link: "Soon →",
+    title: "Chronos",
+    desc: "Mapeamento e visualização de dependências entre rotinas batch como grafo dirigido. Transforma relações de um CSV em uma visualização interativa para explorar cadeias de execução.",
+    stack: ["Python", "FastAPI", "PostgreSQL", "D3.js"],
+    repository: "https://github.com/huser0/Chronos",
   },
   {
-    cover: "CLI · Tooling",
+    cover: "Desktop · Database tool",
     gradient: "linear-gradient(135deg, #6BA8C0 0%, #1F1B16 100%)",
     year: "2026",
-    status: "Coming soon",
-    title: "Personal Project — Placeholder",
-    desc: (
-      <>
-        A developer tool I keep wishing existed. Clean CLI, sensible defaults,
-        zero telemetry. Drop-in for the workflows I run every day.
-      </>
-    ),
-    stack: ["Node.js", "TypeScript"],
-    link: "Soon →",
+    title: "Queryboard",
+    desc: "Aplicativo desktop leve, multi-banco e somente leitura para executar consultas SELECT e interpretar os resultados automaticamente. Permite salvar consultas e executar várias delas em paralelo.",
+    stack: ["Rust", "Tauri", "PostgreSQL", "MySQL"],
+    repository: "https://github.com/huser0/queryboard",
   },
   {
-    cover: "OSS · Contribution",
+    cover: "API · Study project",
     gradient: "linear-gradient(135deg, #D6B656 0%, #C75B3F 100%)",
-    year: "TBD",
-    status: "In progress",
-    title: "Open Source — Placeholder",
-    desc: (
-      <>
-        An open-source contribution I&apos;m actively working on. Documentation
-        and a public repo will land here once the first release is shipped.
-      </>
-    ),
-    stack: ["Open source", "TBD"],
-    link: "Tracked →",
+    year: "2026",
+    title: "Task Manager API",
+    desc: "API REST para gerenciamento de tarefas com Spring Boot e Spring Data REST/JPA. Inclui criação, busca e listagem paginada de tarefas, respostas HAL e documentação Swagger/OpenAPI.",
+    stack: ["Java", "Spring Boot", "Spring Data JPA", "H2"],
+    repository: "https://github.com/huser0/task-manager-api",
   },
   {
     cover: "Web · Study tool",
     gradient: "linear-gradient(135deg, #FF9900 0%, #232F3E 100%)",
     year: "2026",
-    status: "Open source",
     title: "Study Guides Hub",
-    desc: (
-      <>
-        Portal de guias de estudo interativos para certificações AWS e
-        tecnologias como Quarkus.
-      </>
-    ),
-    stack: ["React", "TypeScript", "Vite"],
-    link: "Acessar →",
-    href: "https://hugosergio.com.br/guide/",
+    desc: "Catálogo central de guias de estudo interativos, com acesso ao guia de migração de Spring para Quarkus e ao guia de Amazon S3 para a certificação AWS Solutions Architect.",
+    stack: ["React", "JavaScript", "Vite"],
+    repository: "https://github.com/huser0/guide",
+    website: "https://guide-roan-five.vercel.app",
   },
   {
-    cover: "Notes · Writing",
+    cover: "AI · Movie recommendations",
     gradient: "linear-gradient(135deg, #2A2520 0%, #6BA8C0 100%)",
-    year: "TBD",
-    status: "Coming soon",
-    title: "Writing — Placeholder",
-    desc: (
-      <>
-        Technical notes and post-mortems from the work I do day to day.
-        Long-form, opinionated, and indexed by tag so future-me can actually
-        find them.
-      </>
-    ),
-    stack: ["MDX", "Notes"],
-    link: "Drafts →",
+    year: "2025",
+    title: "Chat with LangChain4j + Ollama",
+    desc: "Aplicação de recomendação de filmes com Java, Spring Boot, LangChain4j e Ollama, configurada para execução local.",
+    stack: ["Java", "Spring Boot", "LangChain4j", "Ollama"],
+    repository: "https://github.com/huser0/chat_with_langchain4j_ollama",
   },
 ];
 
-function StatusBadge({ status }: { status: Project["status"] }) {
+function StatusBadge() {
   return (
     <span
       className="inline-flex items-center gap-1.5 font-mono text-[10px] tracking-[0.12em] text-cream/90 uppercase"
     >
       <span aria-hidden="true" className="h-1.5 w-1.5 rounded-full bg-cream/80" />
-      {status}
+      Public repository
     </span>
   );
 }
@@ -123,17 +120,15 @@ export default function Projects() {
       </h2>
 
       <p className="mt-[-30px] mb-[50px] max-w-[60ch] font-serif text-[clamp(17px,1.4vw,21px)] leading-[1.5] text-muted italic">
-        A curated shelf of personal and open-source work. Client work lives
-        under NDA, so the cards below are placeholders I&apos;ll swap as I
-        ship new things.
+        A curated shelf of personal projects and study tools, with source code
+        and documentation available on GitHub.
       </p>
 
       <div className="grid grid-cols-1 gap-5.5 sm:gap-6 md:grid-cols-2 xl:grid-cols-3">
-        {PROJECTS.map((p, i) => (
+        {PROJECTS.map((p) => (
           <article
-            key={`${p.title}-${i}`}
-            onClick={() => p.href && (window.location.href = p.href)}
-            className={`group flex flex-col overflow-hidden rounded-brand border border-rule bg-cream transition-all duration-300 ease-[cubic-bezier(.2,.7,.2,1)] hover:-translate-y-1.25 hover:shadow-[0_24px_50px_-22px_rgba(26,23,20,0.25)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none ${p.href ? 'cursor-pointer' : ''}`}
+            key={p.repository}
+            className={`group flex flex-col overflow-hidden rounded-brand border border-rule bg-cream transition-all duration-300 ease-[cubic-bezier(.2,.7,.2,1)] hover:-translate-y-1.25 hover:shadow-[0_24px_50px_-22px_rgba(26,23,20,0.25)] motion-reduce:transition-none motion-reduce:hover:translate-y-0 motion-reduce:hover:shadow-none`}
           >
             <div
               className="relative flex h-[clamp(140px,18vw,220px)] items-end overflow-hidden p-4.5 after:absolute after:inset-0 after:bg-[radial-gradient(ellipse_at_top_right,rgba(255,255,255,0.18),transparent_60%)]"
@@ -143,7 +138,7 @@ export default function Projects() {
                 <span className="rounded bg-black/35 px-2.5 py-1 font-mono text-[11px] tracking-[0.1em] text-cream uppercase backdrop-blur-[6px]">
                   {p.cover}
                 </span>
-                <StatusBadge status={p.status} />
+                <StatusBadge />
               </div>
             </div>
             <div className="flex flex-1 flex-col p-5.5">
@@ -167,14 +162,26 @@ export default function Projects() {
                 ))}
               </ul>
               <div className="mt-auto flex items-center justify-between gap-4.5 text-[13px] font-medium">
-                <span
-                  className={`inline-flex items-center gap-1 border-b pb-px ${p.href ? 'border-current text-ink hover:text-accent' : 'border-transparent text-muted'}`}
+                <a
+                  href={p.repository}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`View ${p.title} on GitHub`}
+                  className="inline-flex items-center gap-1 border-b border-current pb-px text-ink hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
                 >
-                  {p.link}
-                </span>
-                <span className="font-mono text-[10px] tracking-[0.12em] text-muted uppercase">
-                  {p.href ? 'Live' : 'Placeholder'}
-                </span>
+                  GitHub →
+                </a>
+                {p.website && (
+                  <a
+                    href={p.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Visit ${p.title}`}
+                    className="inline-flex items-center gap-1 border-b border-current pb-px text-ink hover:text-accent focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+                  >
+                    Visit site →
+                  </a>
+                )}
               </div>
             </div>
           </article>
