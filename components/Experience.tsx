@@ -1,4 +1,3 @@
-import Reveal from "./Reveal";
 
 type Role = {
   year: string;
@@ -94,103 +93,27 @@ const ROLES: Role[] = [
   },
 ];
 
-function Tag({ children }: { children: React.ReactNode }) {
-  return (
-    <li className="rounded-full border border-rule bg-cream px-2.5 py-1 font-mono text-[11px] tracking-[0.02em] text-ink-soft">
-      {children}
-    </li>
-  );
-}
-
-function Meta({ role }: { role: Role }) {
-  return (
-    <div className="flex flex-col gap-1.5">
-      <span className="font-mono text-sm tracking-[0.02em] text-ink">
-        {role.year}
-      </span>
-      <span className="font-serif text-base text-muted italic">
-        {role.period}
-      </span>
-      <span className="font-mono text-[11px] tracking-[0.06em] text-muted uppercase">
-        {role.location}
-      </span>
-    </div>
-  );
-}
-
-function RoleBlock({ role, isLast }: { role: Role; isLast: boolean }) {
-  return (
-    <article
-      className={`grid grid-cols-1 gap-5 py-[clamp(36px,5vw,64px)] md:grid-cols-[clamp(170px,20vw,240px)_1fr] md:gap-x-[clamp(28px,4vw,72px)] md:gap-y-0 ${
-        isLast ? "" : "border-b border-rule"
-      }`}
-    >
-      <Meta role={role} />
-      <div className="min-w-0 max-w-[68ch]">
-        <div className="mb-4 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-          <h3 className="font-serif text-[clamp(24px,2.6vw,34px)] font-medium tracking-[-0.01em]">
-            {role.title}
-          </h3>
-          <span className="font-mono text-xs tracking-[0.04em] text-muted">
-            {role.company}
-            <span className="mx-2 text-accent">·</span>
-            {role.type}
-          </span>
-        </div>
-
-        <p className="mb-5 text-[clamp(15px,1.1vw,17px)] leading-[1.55] text-ink-soft">
-          {role.summary}
-        </p>
-
-        <ul role="list" className="mb-6 flex flex-col gap-2">
-          {role.bullets.map((text, i) => (
-            <li
-              key={i}
-              className="relative pl-4.5 text-[14.5px] leading-[1.6] text-ink-soft before:absolute before:top-[10px] before:left-0 before:h-1.5 before:w-1.5 before:rounded-full before:bg-accent before:content-['']"
-            >
-              {text}
-            </li>
-          ))}
-        </ul>
-
-        <ul role="list" className="flex flex-wrap gap-1.5">
-          {role.tags.map((tag) => (
-            <Tag key={tag}>{tag}</Tag>
-          ))}
-        </ul>
-      </div>
-    </article>
-  );
-}
-
 export default function Experience() {
   return (
-    <Reveal
-      as="section"
-      id="work"
-      className="mx-auto max-w-[1280px] px-[clamp(20px,4vw,56px)] py-[clamp(80px,10vw,140px)]"
-    >
-      <div className="mb-10 flex flex-wrap items-center gap-x-4 gap-y-2 font-mono text-[13px] tracking-[0.02em] text-muted">
-        <span>— Experience</span>
-        <span className="h-px flex-1 basis-12 bg-rule" />
-        <span className="font-serif text-muted italic">A glimpse of the journey</span>
-      </div>
-
-      <h2 className="mb-[clamp(40px,5vw,70px)] max-w-[16ch] font-serif text-[clamp(32px,5vw,64px)] leading-[1.05] font-medium tracking-[-0.02em]">
-        Two companies.
-        <br />
-        <em className="text-accent italic">One relentless</em> craft.
-      </h2>
-
-      <div className="border-t border-ink">
-        {ROLES.map((role, idx) => (
-          <RoleBlock
-            key={`${role.company}-${role.title}`}
-            role={role}
-            isLast={idx === ROLES.length - 1}
-          />
-        ))}
-      </div>
-    </Reveal>
+    <section id="work" className="portfolio-section dark" aria-labelledby="experience-heading">
+      <p className="section-label">// Experience</p>
+      <div className="portfolio-heading"><h2 id="experience-heading">A glimpse of the journey.</h2></div>
+      {ROLES.map(role => (
+        <article className="experience-row" key={`${role.company}-${role.title}`}>
+          <div className="experience-meta">
+            <strong>{role.year}</strong>
+            <span>{role.period}</span>
+            <span>{role.location}</span>
+          </div>
+          <div>
+            <p className="project-meta">{role.company} · {role.type}</p>
+            <h3>{role.title}</h3>
+            <p className="project-description">{role.summary}</p>
+            <ul className="experience-details">{role.bullets.map(text => <li key={text}>{text}</li>)}</ul>
+            <ul className="technology-list">{role.tags.map(tag => <li key={tag}>{tag}</li>)}</ul>
+          </div>
+        </article>
+      ))}
+    </section>
   );
 }

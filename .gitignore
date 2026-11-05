@@ -3,3 +3,19 @@ node_modules
 out
 .env*
 npm-debug.log*
+
+# Local credentials and agent configuration
+.aws/
+.agents/
+.codex/
+
+# Local design references and unused source portrait
+/design/
+/public/assets/portrait.png
+
+# Generated files and local tooling
+*.tsbuildinfo
+.vercel/
+coverage/
+.DS_Store
+*.log
