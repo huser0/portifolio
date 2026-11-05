@@ -777,3 +777,68 @@ body { min-width: 0; }
     outline-color: #b52e25;
   }
 }
+
+/* The navigation and introduction share the first viewport. */
+.landing-screen {
+  display: grid;
+  grid-template-rows: auto 1fr;
+  min-height: 100svh;
+  background: var(--paper);
+}
+.landing-screen .hero {
+  height: auto;
+  min-height: 420px;
+}
+@media (max-width: 600px) {
+  .landing-screen .hero {
+    min-height: 503px;
+    grid-template-rows: minmax(340px, 1fr) auto;
+  }
+  .landing-screen .portrait {
+    align-self: end;
+    margin-bottom: -110px;
+  }
+  .landing-screen .hero-title {
+    top: auto;
+    bottom: 280px;
+  }
+}
+
+.scroll-hint {
+  position: absolute;
+  bottom: 18px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 4;
+  display: flex;
+  color: #fff;
+  pointer-events: none;
+}
+
+.scroll-hint-wheel { animation: scroll-hint-wheel 1.8s ease-in-out infinite; }
+@keyframes scroll-hint-wheel {
+  0%, 15% { transform: translateY(0); opacity: 1; }
+  75%, 100% { transform: translateY(9px); opacity: 0; }
+}
+@media (max-width: 600px) {
+  .landing-screen .hero-bottom { padding-bottom: 106px; }
+  .landing-screen .hero-title { bottom: 362px; }
+  .scroll-hint { bottom: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint-wheel { animation: none; }
+}
+
+.arrow-icon {
+  display: inline-block;
+  flex-shrink: 0;
+  vertical-align: -0.15em;
+  width: 1em;
+  height: 1em;
+  margin-inline-start: .35em;
+}
+.hero-shortcuts .arrow-icon {
+  margin-inline: 0 6px;
+  width: 16px;
+  height: 16px;
+}
