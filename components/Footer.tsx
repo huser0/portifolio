@@ -1,5 +1,6 @@
+import ArrowIcon from "./ArrowIcon";
 export default function Footer() {
   return (
-    <footer className="footer dark"><span>© Hugo Sergio · Since 2021</span><a href="#inicio">Back to top ↑</a></footer>
+    <footer className="footer dark"><span>© Hugo Sergio · Since 2021</span><a href="#inicio">Back to top <ArrowIcon direction="up" /></a></footer>
   );
 }

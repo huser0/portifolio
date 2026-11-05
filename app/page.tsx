@@ -1,3 +1,4 @@
+import SectionNavigation from "@/components/SectionNavigation";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
 import Header from "@/components/Header";
@@ -10,14 +11,17 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <main className="page" id="inicio">
-      <Header />
-      <Hero />
+      <div className="landing-screen">
+        <Header />
+        <Hero />
+      </div>
       <About />
       <Projects />
       <Experience />
       <Expertise />
       <Closing />
       <Footer />
+      <SectionNavigation />
     </main>
   );
 }

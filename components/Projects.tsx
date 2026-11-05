@@ -1,3 +1,4 @@
+import ArrowIcon from "./ArrowIcon";
 
 type Project = {
   cover: string;
@@ -102,14 +103,14 @@ export default function Projects() {
             <div>
               <p className="project-description" lang="pt-BR">{project.desc}</p>
               <div className="project-links">
-                <a href={project.repository} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} on GitHub`}>Source code ↗</a>
-                {project.website && <a href={project.website} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${project.title}`}>Visit site ↗</a>}
+                <a href={project.repository} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} on GitHub`}>Source code <ArrowIcon /></a>
+                {project.website && <a href={project.website} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${project.title}`}>Visit site <ArrowIcon /></a>}
               </div>
             </div>
           </article>
         ))}
       </div>
-      <a href="https://github.com/huser0" target="_blank" rel="noopener noreferrer" className="button repositories-link">All repositories ↗</a>
+      <a href="https://github.com/huser0" target="_blank" rel="noopener noreferrer" className="button repositories-link">All repositories <ArrowIcon /></a>
     </section>
   );
 }
