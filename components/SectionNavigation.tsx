@@ -10,25 +10,29 @@ export default function SectionNavigation() {
     let gestureConsumed = false;
     const ignored = "input, textarea, select, [contenteditable], [role='dialog'], [role='slider'], [role='listbox']";
 
-    const navigate = (direction: number) => {
+    const getIntroDestination = () => {
+      const landing = document.querySelector<HTMLElement>(".landing-screen");
+      const about = document.querySelector<HTMLElement>("#sobre");
+      if (!landing || !about) return null;
+      const bounds = landing.getBoundingClientRect();
+      // Only snap out of the introduction after all of its content is visible.
+      if (bounds.bottom <= 2 || bounds.bottom > window.innerHeight + 2) return null;
+      return window.scrollY + about.getBoundingClientRect().top;
+    };
+
+    const navigate = (destination: number) => {
       if (performance.now() < lockedUntil) return;
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      const stops = [0, ...Array.from(document.querySelectorAll<HTMLElement>("main > section:not(.hero)"), section =>
-        Math.min(maxScroll, window.scrollY + section.getBoundingClientRect().top)
-      )];
-      const destination = direction > 0
-        ? stops.find(top => top > window.scrollY + 24)
-        : stops.reverse().find(top => top < window.scrollY - 24);
-      if (destination === undefined) return;
-      lockedUntil = performance.now() + 850;
+      lockedUntil = performance.now() + 450;
       window.scrollTo({ top: destination, behavior: matchMedia("(prefers-reduced-motion: reduce)").matches ? "instant" : "smooth" });
     };
 
     const onKeyDown = (event: KeyboardEvent) => {
-      if (!["ArrowDown", "ArrowUp"].includes(event.key) || event.repeat || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
+      if (event.key !== "ArrowDown" || event.repeat || event.altKey || event.ctrlKey || event.metaKey || event.shiftKey) return;
       if (event.target instanceof Element && event.target.closest(`${ignored}, button, a, summary`)) return;
+      const destination = getIntroDestination();
+      if (destination === null) return;
       event.preventDefault();
-      navigate(event.key === "ArrowDown" ? 1 : -1);
+      navigate(destination);
     };
 
     const onWheel = (event: WheelEvent) => {
@@ -40,25 +44,38 @@ export default function SectionNavigation() {
           if (/(auto|scroll)/.test(getComputedStyle(el).overflowY) && el.scrollHeight > el.clientHeight) return;
         }
       }
-      event.preventDefault();
+      const destination = getIntroDestination();
+      if (event.deltaY <= 0 || destination === null) {
+        wheelDistance = 0;
+        gestureConsumed = false;
+        return;
+      }
       const now = performance.now();
       const continuingGesture = now - lastWheel < 180;
       lastWheel = now;
       if (!continuingGesture) { wheelDistance = 0; gestureConsumed = false; }
-      if (now < lockedUntil || gestureConsumed) { wheelDistance = 0; return; }
+      if (now < lockedUntil || gestureConsumed) {
+        event.preventDefault();
+        wheelDistance = 0;
+        return;
+      }
+      event.preventDefault();
       const delta = event.deltaY * (event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? window.innerHeight : 1);
       if (Math.sign(delta) !== Math.sign(wheelDistance)) wheelDistance = 0;
       wheelDistance += delta;
       if (Math.abs(wheelDistance) >= 40) {
         gestureConsumed = true;
-        navigate(Math.sign(wheelDistance));
+        navigate(destination);
         wheelDistance = 0;
       }
     };
 
+    const onScrollEnd = () => { lockedUntil = 0; };
+    window.addEventListener("scrollend", onScrollEnd);
     window.addEventListener("keydown", onKeyDown);
     window.addEventListener("wheel", onWheel, { passive: false });
     return () => {
+      window.removeEventListener("scrollend", onScrollEnd);
       window.removeEventListener("keydown", onKeyDown);
       window.removeEventListener("wheel", onWheel);
     };
