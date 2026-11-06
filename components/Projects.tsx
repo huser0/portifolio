@@ -1,3 +1,4 @@
+import Image from "next/image";
 import ArrowIcon from "./ArrowIcon";
 
 type Project = {
@@ -8,6 +9,8 @@ type Project = {
   stack: string[];
   repository: string;
   website?: string;
+  // Place files in public/assets/projects and set the URL below.
+  media?: { src: string; alt: string };
 };
 
 // Descriptions and technologies checked against public GitHub docs and source code.
@@ -44,6 +47,7 @@ const PROJECTS: Project[] = [
     title: "Chronos",
     desc: "Mapeamento e visualização de dependências entre rotinas batch como grafo dirigido. Transforma relações de um CSV em uma visualização interativa para explorar cadeias de execução.",
     stack: ["Python", "FastAPI", "PostgreSQL", "D3.js"],
+    media: { src: "/assets/projects/chronos.png", alt: "Chronos" },
     repository: "https://github.com/huser0/Chronos",
   },
   {
@@ -68,8 +72,9 @@ const PROJECTS: Project[] = [
     title: "Study Guides Hub",
     desc: "Catálogo central de guias de estudo interativos, com acesso ao guia de migração de Spring para Quarkus e ao guia de Amazon S3 para a certificação AWS Solutions Architect.",
     stack: ["React", "JavaScript", "Vite"],
+    media: { src: "/assets/projects/study-guide.png", alt: "Study Guides Hub" },
     repository: "https://github.com/huser0/guide",
-    website: "https://guide-roan-five.vercel.app",
+    website: "https://hugosergio.com.br/guide/",
   },
   {
     cover: "AI · Movie recommendations",
@@ -89,9 +94,20 @@ export default function Projects() {
         <h2 id="projects-heading">Projects.</h2>
         <span>{String(PROJECTS.length).padStart(2, "0")} projects</span>
       </div>
-      <div>
+      <div className="projects-bento">
         {PROJECTS.map((project, index) => (
-          <article key={project.repository} className="project-row">
+          <article key={project.repository} className="project-card">
+            <div className="project-preview">
+              {project.media ? (
+                <Image src={project.media.src} alt={project.media.alt} fill unoptimized={/\.gif$/i.test(project.media.src)} sizes="(max-width: 700px) 100vw, (max-width: 1100px) 50vw, 66vw" />
+              ) : (
+                <div className="project-preview-placeholder" aria-hidden="true">
+                  <span>{String(index + 1).padStart(2, "0")}</span>
+                  <span>{project.cover}</span>
+                </div>
+              )}
+            </div>
+            <div className="project-card-body">
             <span className="project-number">{String(index + 1).padStart(2, "0")}</span>
             <div>
               <p className="project-meta">{project.cover} · {project.year}</p>
@@ -106,6 +122,7 @@ export default function Projects() {
                 <a href={project.repository} target="_blank" rel="noopener noreferrer" aria-label={`View ${project.title} on GitHub`}>Source code <ArrowIcon /></a>
                 {project.website && <a href={project.website} target="_blank" rel="noopener noreferrer" aria-label={`Visit ${project.title}`}>Visit site <ArrowIcon /></a>}
               </div>
+            </div>
             </div>
           </article>
         ))}

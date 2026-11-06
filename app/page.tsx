@@ -7,6 +7,8 @@ import About from "@/components/About";
 import Expertise from "@/components/Expertise";
 import Closing from "@/components/Closing";
 import Footer from "@/components/Footer";
+import Publications from "@/components/Publications";
+import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
   return (
@@ -19,9 +21,11 @@ export default function Home() {
       <Projects />
       <Experience />
       <Expertise />
+      <Publications />
       <Closing />
       <Footer />
       <SectionNavigation />
+      <ScrollReveal />
     </main>
   );
 }
